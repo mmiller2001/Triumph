@@ -42,6 +42,7 @@ dependencies {
 
     //Firebase Implementations
     implementation 'com.google.firebase:firebase-auth:21.1.0'
+    implementation 'com.firebaseui:firebase-ui-database:8.0.1' // most recent one
     implementation 'com.google.firebase:firebase-database:20.1.0'
     implementation platform('com.google.firebase:firebase-bom:31.1.1')
 
@@ -54,8 +55,16 @@ dependencies {
     //Google Play Services
     implementation 'com.google.android.gms:play-services-auth:20.4.0'
 
+    // Picasso
+    implementation 'com.squareup.picasso:picasso:2.8'
+
+    // Material.io
+    //implementation 'com.google.android.material:material:1.3.0-alpha01'
+    implementation 'com.google.android.material:material:1.8.0-beta01'
+    //implementation 'com.android.support:design:26.1.0'
+
     // AvatarImageGenerator
-//    implementation 'com.github.amoskorir:avatarimagegenerator:VERSION'
+    implementation 'com.github.amoskorir:avatarimagegenerator:1.5.0'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
