@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 userChat = snapshot.getValue(User.class);
-//                Toast.makeText(MainActivity.this, "Welcome: " + userChat.getDisplayName(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Welcome: " + userChat.getDisplayName(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -142,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void displayKanbans() {
         String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        Toast.makeText(this, "UserID: "+ userID, Toast.LENGTH_SHORT).show();
+
         FirebaseListOptions<Kanban> options = new FirebaseListOptions.Builder<Kanban>()
                 .setQuery(FirebaseDatabase.getInstance().getReference("GroupID" + "/" + userID).orderByChild("kanban_title"), Kanban.class)
                 .setLayout(R.layout.custom_kanban_project).build();
@@ -158,15 +158,19 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
+        kanban_list.setAdapter(adapterKanban);
+
         kanban_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 DatabaseReference itemRef = adapterKanban.getRef(position);
                 Toast.makeText(MainActivity.this, "Item: " + itemRef.getKey(), Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(MainActivity.this, ChartActivity.class);
+                intent.putExtra("KanbanReference",itemRef.getKey());
+                startActivity(intent);
             }
         });
-
-        kanban_list.setAdapter(adapterKanban);
     }
 
     private void displayMembers() {

@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Triumph</string>
     <string name="signOut"><u>Sign Out</u></string>
+    <string name="title">Name</string>
 </resources>
