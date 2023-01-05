@@ -29,7 +29,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class ChartActivity extends AppCompatActivity {
+public class ChartActivity extends AppCompatActivity implements Dialog.DialogListener {
 
     // Firebase Utilities
     private FirebaseUser currentUser;
@@ -41,6 +41,9 @@ public class ChartActivity extends AppCompatActivity {
 
     private ProgressBar progressBar;
     private FloatingActionButton kanban_plus;
+
+    // Classes
+    private User userChat;
 
     private MaterialToolbar toolbar;
 
@@ -67,6 +70,8 @@ public class ChartActivity extends AppCompatActivity {
                 kanbanReference = (String) savedInstanceState.getSerializable("KanbanReference");
             }
 
+            getCurrentUser();
+
             toolbar = findViewById(R.id.toolbar);
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
@@ -88,32 +93,29 @@ public class ChartActivity extends AppCompatActivity {
             kanban_plus.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-//                    LayoutInflater inflater = (LayoutInflater) ChartActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//                    View popupView = inflater.inflate(R.layout.popup_task, null);
-//
-//                    int width = LinearLayout.LayoutParams.WRAP_CONTENT;
-//                    int height = LinearLayout.LayoutParams.WRAP_CONTENT;
-//                    boolean focusable = true; // lets taps outside the popup also dismiss it
-//                    final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
-//
-//                    popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
-//                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//                        popupWindow.setElevation(20);
-//                    }
-//
-//                    popupView.setOnTouchListener(new View.OnTouchListener() {
-//                        @Override
-//                        public boolean onTouch(View view, MotionEvent motionEvent) {
-//                            popupWindow.dismiss();
-//                            return true;
-//                        }
-//                    });
+                    Dialog dialog = new Dialog();
+                    dialog.show(getSupportFragmentManager(), "example dialog");
+
                 }
             });
 
             syncKanban();
-
         }
+    }
+
+    private void getCurrentUser() {
+        String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        FirebaseDatabase.getInstance().getReference("Users").child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                userChat = snapshot.getValue(User.class);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(ChartActivity.this, "Error: No User Sync", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void syncKanban() {
@@ -130,5 +132,22 @@ public class ChartActivity extends AppCompatActivity {
                 Toast.makeText(ChartActivity.this, "Error: Couldn't sync Kanban", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public void applyText(String task_title, String task_description, String task_due_date, String task_date_completed, String task_priority) {
+        Task newTask = new Task(task_title,task_description,task_due_date,task_date_completed,task_priority,userChat.getDisplayName(),userChat.getDisplayName());
+        Toast.makeText(this, "Task Title: " + newTask.getTask_title()
+                + "\nTask Description: " + newTask.getTask_description()
+                + "\nTask Due Date: " + newTask.getTask_due_date()
+                + "\nTask Date Completed: " + newTask.getTask_date_completed()
+                + "\nTask Priority: " + newTask.getTask_priority()
+                + "\nTask Creator: " + newTask.getTask_person_creator()
+                + "\nTask Modifier: " + newTask.getTask_person_modifier()
+                + "\nTask Date Created: " + newTask.getTask_date_created()
+                + "\nTask Date Modified: " + newTask.getTask_date_modified()
+                + "\nTask Time Created: " + newTask.getTask_time_created()
+                + "\nTask Time Modified: "+ newTask.getTask_time_modified()
+                + "\nTask Zone: "+ newTask.getTask_zone(), Toast.LENGTH_LONG).show();
     }
 }

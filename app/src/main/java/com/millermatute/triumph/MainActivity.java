@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayAdapter<String> arrayAdapter;
     private ListView listView;
     private ListView kanban_list;
+    private ProgressBar progressBar;
 
     // Kanban Utilities
     private TextView kanban_title;
@@ -81,6 +83,9 @@ public class MainActivity extends AppCompatActivity {
 
             Toolbar toolbar = findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
+
+            progressBar = findViewById(R.id.progress_bar);
+            progressBar.setVisibility(View.VISIBLE);
 
             listView = findViewById(R.id.listview);
             kanban_list = findViewById(R.id.list_kanban);
@@ -159,12 +164,13 @@ public class MainActivity extends AppCompatActivity {
         };
 
         kanban_list.setAdapter(adapterKanban);
+        progressBar.setVisibility(View.GONE);
 
         kanban_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 DatabaseReference itemRef = adapterKanban.getRef(position);
-                Toast.makeText(MainActivity.this, "Item: " + itemRef.getKey(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MainActivity.this, "Item: " + itemRef.getKey(), Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(MainActivity.this, ChartActivity.class);
                 intent.putExtra("KanbanReference",itemRef.getKey());

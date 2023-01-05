@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="16dp">
 
     <EditText
         android:id="@+id/task_title"
@@ -21,20 +22,28 @@
         android:id="@+id/task_due_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Date"
+        android:hint="Due Date (MM/dd/yyyy)"
+        android:focusable="false"
         android:inputType="date" />
 
     <EditText
         android:id="@+id/task_date_completed"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Date"
-        android:inputType="date" />
+        android:hint="Date Completed (MM/dd/yyyy)"
+        android:focusable="false"
+        android:inputType="datetime" />
 
-    <EditText
+<!--    <EditText-->
+<!--        android:id="@+id/task_priority"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:hint="Enter Priority" />-->
+
+    <Spinner
         android:id="@+id/task_priority"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Priority" />
+        android:spinnerMode="dropdown"/>
 
 </LinearLayout>
