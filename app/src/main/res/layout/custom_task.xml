@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/task_person_image"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:src="@drawable/ic_launcher_background" />
+
+        <TextView
+            android:id="@+id/task_person_creator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_toRightOf="@+id/task_person_image"
+            android:text="Marlon Miller"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/task_date_created"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/task_person_creator"
+            android:layout_toRightOf="@+id/task_person_image"
+            android:layout_marginLeft="5dp"
+            android:text="Created: 1/5/2023"
+            android:textColor="@color/black"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/task_date_modified"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/task_date_created"
+            android:layout_toRightOf="@+id/task_person_image"
+            android:layout_marginLeft="5dp"
+            android:text="Modified by: Elsy Regina on 1/6/2023"
+            android:textStyle="italic"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/task_time_created"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_alignParentRight="true"
+            android:text="9:00 AM"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            android:textColor="@color/black"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Comprar Pan"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/task_priority"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_gravity="right"
+            android:text="Important"
+            android:textSize="15sp"
+            android:textStyle="italic" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Martha came to the conclusion that shake weights are a great gift for any occasion." />
+
+</LinearLayout>

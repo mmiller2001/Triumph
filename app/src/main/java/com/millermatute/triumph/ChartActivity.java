@@ -137,17 +137,19 @@ public class ChartActivity extends AppCompatActivity implements Dialog.DialogLis
     @Override
     public void applyText(String task_title, String task_description, String task_due_date, String task_date_completed, String task_priority) {
         Task newTask = new Task(task_title,task_description,task_due_date,task_date_completed,task_priority,userChat.getDisplayName(),userChat.getDisplayName());
-        Toast.makeText(this, "Task Title: " + newTask.getTask_title()
-                + "\nTask Description: " + newTask.getTask_description()
-                + "\nTask Due Date: " + newTask.getTask_due_date()
-                + "\nTask Date Completed: " + newTask.getTask_date_completed()
-                + "\nTask Priority: " + newTask.getTask_priority()
-                + "\nTask Creator: " + newTask.getTask_person_creator()
-                + "\nTask Modifier: " + newTask.getTask_person_modifier()
-                + "\nTask Date Created: " + newTask.getTask_date_created()
-                + "\nTask Date Modified: " + newTask.getTask_date_modified()
-                + "\nTask Time Created: " + newTask.getTask_time_created()
-                + "\nTask Time Modified: "+ newTask.getTask_time_modified()
-                + "\nTask Zone: "+ newTask.getTask_zone(), Toast.LENGTH_LONG).show();
+        //String key = FirebaseDatabase.getInstance().getReference("Kanban/" + kanbanReference + "Data/To_Do").push().getKey();
+        FirebaseDatabase.getInstance().getReference("Kanban/" + kanbanReference + "/Data/To_Do").push().setValue(newTask);
+//        Toast.makeText(this, "Task Title: " + newTask.getTask_title()
+//                + "\nTask Description: " + newTask.getTask_description()
+//                + "\nTask Due Date: " + newTask.getTask_due_date()
+//                + "\nTask Date Completed: " + newTask.getTask_date_completed()
+//                + "\nTask Priority: " + newTask.getTask_priority()
+//                + "\nTask Creator: " + newTask.getTask_person_creator()
+//                + "\nTask Modifier: " + newTask.getTask_person_modifier()
+//                + "\nTask Date Created: " + newTask.getTask_date_created()
+//                + "\nTask Date Modified: " + newTask.getTask_date_modified()
+//                + "\nTask Time Created: " + newTask.getTask_time_created()
+//                + "\nTask Time Modified: "+ newTask.getTask_time_modified()
+//                + "\nTask Zone: "+ newTask.getTask_zone(), Toast.LENGTH_LONG).show();
     }
 }
