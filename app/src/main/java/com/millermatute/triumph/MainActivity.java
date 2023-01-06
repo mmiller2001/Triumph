@@ -256,5 +256,4 @@ public class MainActivity extends AppCompatActivity {
             adapterKanban.stopListening();
         }
     }
-
 }

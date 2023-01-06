@@ -2,6 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:foreground="?attr/selectableItemBackground"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -70,6 +72,7 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/task_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
@@ -95,6 +98,7 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/task_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"

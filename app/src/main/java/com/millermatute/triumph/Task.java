@@ -18,6 +18,9 @@ public class Task {
     private String task_time_created;
     private String task_time_modified;
 
+    private String task_creator_uid;
+    private String task_modifier_uid;
+
     private String task_date_created;
     private String task_date_modified;
     private String task_zone;
@@ -35,7 +38,7 @@ public class Task {
 
     }
 
-    public Task(String task_title, String task_description, String task_due_date, String task_date_completed, String task_priority, String task_creator, String task_modifier) {
+    public Task(String task_title, String task_description, String task_due_date, String task_date_completed, String task_priority, String task_creator, String task_modifier, String task_creator_uid, String task_modifier_uid) {
         this.task_title = task_title;
         this.task_description = task_description;
         this.task_due_date = task_due_date;
@@ -43,6 +46,8 @@ public class Task {
         this.task_priority = task_priority;
         this.task_person_creator = task_creator;
         this.task_person_modifier = task_modifier;
+        this.task_creator_uid = task_creator_uid;
+        this.task_modifier_uid = task_modifier_uid;
 
         // Automatic
         this.task_time_created = timeFormatter.format(localDateTime);
@@ -66,6 +71,8 @@ public class Task {
     public String getTask_time_created() {return task_time_created;}
     public String getTask_time_modified() {return task_time_modified;}
     public String getTask_zone() {return task_zone;}
+    public String getTask_creator_uid() {return task_creator_uid;}
+    public String getTask_modifier_uid() {return task_modifier_uid;}
 
     public void setTask_title(String task_title) {this.task_title = task_title;}
     public void setTask_description(String task_description) {this.task_description = task_description;}
@@ -79,4 +86,6 @@ public class Task {
     public void setTask_time_created(String task_time_created) {this.task_time_created = task_time_created;}
     public void setTask_time_modified(String task_time_modified) {this.task_time_modified = task_time_modified;}
     public void setTask_zone(String task_zone) {this.task_zone = task_zone;}
+    public void setTask_creator_uid(String task_creator_uid) {this.task_creator_uid = task_creator_uid;}
+    public void setTask_modifier_uid(String task_modifier_uid) {this.task_modifier_uid = task_modifier_uid;}
 }
